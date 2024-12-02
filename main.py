@@ -17,6 +17,15 @@ async def numero(update: Update, context: CallbackContext):
     random_number = random.randint(1, 100)  # Número aleatorio entre 1 y 100
     await update.message.reply_text(f'El número aleatorio es: {random_number}')
 
+# Nueva función para manejar el saludo con nombre
+async def saludar_con_nombre(update: Update, context: CallbackContext):
+    # Obtener el nombre del primer argumento después del comando
+    if context.args:
+        nombre = " ".join(context.args)  # Unir los argumentos si hay más de una palabra
+        await update.message.reply_text(f'¡Hola, {nombre}!')
+    else:
+        await update.message.reply_text('¡Hola! ¿Cómo te llamas?')
+
 # Función principal que arranca el bot
 def main():
     
@@ -26,6 +35,7 @@ def main():
     # Agregar manejadores para los comandos /hola y /numero
     application.add_handler(CommandHandler("hola", hola))
     application.add_handler(CommandHandler("numero", numero))
+    application.add_handler(CommandHandler("saludar", saludar_con_nombre))
     
     # Iniciar el bot (asíncrono)
     application.run_polling()
