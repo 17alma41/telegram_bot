@@ -17,7 +17,7 @@ async def numero(update: Update, context: CallbackContext):
     random_number = random.randint(1, 100)  # Número aleatorio entre 1 y 100
     await update.message.reply_text(f'El número aleatorio es: {random_number}')
 
-# Nueva función para manejar el saludo con nombre
+# Función para manejar el saludo con nombre
 async def saludar_con_nombre(update: Update, context: CallbackContext):
     # Obtener el nombre del primer argumento después del comando
     if context.args:
@@ -32,7 +32,7 @@ def main():
     # Crear la instancia de Application (más reciente y asíncrona)
     application = Application.builder().token(api_key).build()
     
-    # Agregar manejadores para los comandos /hola y /numero
+    # Agregar manejadores para los comandos 
     application.add_handler(CommandHandler("hola", hola))
     application.add_handler(CommandHandler("numero", numero))
     application.add_handler(CommandHandler("saludar", saludar_con_nombre))
