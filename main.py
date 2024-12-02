@@ -2,6 +2,11 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, CallbackContext
 import random
 import asyncio
+import dotenv
+import os
+
+dotenv.load_dotenv()
+api_key = os.getenv("API_KEY")
 
 # Función para manejar el comando /hola
 async def hola(update: Update, context: CallbackContext):
@@ -14,11 +19,9 @@ async def numero(update: Update, context: CallbackContext):
 
 # Función principal que arranca el bot
 def main():
-    # Aquí debes colocar el token que te dio BotFather
-    token = '7840584573:AAF3c3ZNlLVzrUnSPceoUFcf0H0Nep0vJGM'
     
     # Crear la instancia de Application (más reciente y asíncrona)
-    application = Application.builder().token(token).build()
+    application = Application.builder().token(api_key).build()
     
     # Agregar manejadores para los comandos /hola y /numero
     application.add_handler(CommandHandler("hola", hola))
